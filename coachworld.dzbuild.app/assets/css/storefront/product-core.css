@@ -1,0 +1,3555 @@
+:root {
+    --store-primary: var(--pd-primary);
+    --store-secondary: var(--pd-secondary);
+}
+
+/* Global Focus & Selection Fixes - Remove ugly blue outline */
+
+*:focus {
+    outline: none !important;
+}
+
+*:focus-visible {
+    outline: none !important;
+}
+
+/* Remove tap highlight on mobile */
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+/* Custom focus states for accessibility */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    box-shadow: 0 0 0 2px var(--store-primary, #1a1a2e) !important;
+    outline: none !important;
+}
+
+/* Radio and Checkbox styling */
+
+input[type="radio"],
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+input[type="checkbox"] {
+    border-radius: 4px;
+}
+
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
+    border-color: var(--store-primary);
+    background: var(--store-primary);
+}
+
+input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+    box-shadow: 0 0 0 3px rgba(var(--store-primary-rgb, 26, 26, 46), 0.15);
+    outline: none !important;
+}
+
+/* Clickable elements smooth transition */
+
+.text-option,
+.color-swatch,
+.offer-card,
+.fc-radio-label,
+.quantity-btn,
+.variant-option {
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.text-option:active,
+.color-swatch:active,
+.offer-card:active,
+.quantity-btn:active {
+    transform: scale(0.95);
+}
+
+/* Move WhatsApp button above fixed bottom bar on mobile */
+
+@media (max-width: 767px) {
+    .whatsapp-float {
+        bottom: calc(90px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+    :root {
+        --dz-hw-lift: 70px;
+    }
+}
+
+/* Reset & Base */
+
+.product-page {
+    background: #f8f9fa;
+    min-height: 100vh;
+    padding-bottom: 20px;
+}
+
+/* Image Gallery Section */
+
+.gallery-section {
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.main-swiper {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #f5f5f7;
+}
+
+.main-swiper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f7;
+    cursor: zoom-in;
+    overflow: hidden;
+}
+
+.main-swiper .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: var(--pd-img-fit);
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+    pointer-events: none;
+}
+
+/* Image counter badge */
+
+.image-counter {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    z-index: 10;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    letter-spacing: 0.5px;
+}
+
+.thumb-swiper {
+    padding: 10px 12px;
+    background: transparent;
+}
+
+.thumb-swiper .swiper-slide {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    background: #f0f0f0;
+    transform: scale(1);
+}
+
+.thumb-swiper .swiper-slide:hover {
+    opacity: 0.8;
+}
+
+.thumb-swiper .swiper-slide-thumb-active {
+    opacity: 1;
+    transform: scale(1.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.thumb-swiper .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Swiper Navigation Arrows - hidden globally */
+
+.main-swiper .swiper-button-next,
+.main-swiper .swiper-button-prev {
+    display: none !important;
+}
+
+.main-swiper .swiper-pagination-bullet {
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    width: 7px;
+    height: 7px;
+    transition: all 0.3s ease;
+}
+
+.main-swiper .swiper-pagination-bullet-active {
+    background: var(--store-primary);
+    width: 20px;
+    border-radius: 4px;
+}
+
+/* Stacked Image Layout */
+
+.stacked-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.stacked-gallery .stacked-image {
+    width: 100%;
+    background: #f5f5f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.stacked-gallery .stacked-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+    pointer-events: none;
+}
+
+/* Product Info Section */
+
+.product-info {
+    background: transparent;
+    padding: 16px 20px;
+    margin-top: 10px;
+}
+
+.product-category {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.product-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0;
+    line-height: 1.4;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    min-width: 0;
+    unicode-bidi: plaintext;
+    text-align: start;
+}
+
+.product-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: nowrap;
+}
+
+.stock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.stock-badge .stock-text {
+    display: inline;
+}
+
+.stock-badge.in-stock {
+    color: #10b981;
+    background: #ecfdf5;
+}
+
+.stock-badge.low-stock {
+    color: #f59e0b;
+    background: #fffbeb;
+}
+
+.stock-badge.out-of-stock {
+    color: #ef4444;
+    background: #fef2f2;
+}
+
+.stock-badge i {
+    font-size: 11px;
+}
+
+.product-price-box {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.current-price {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--store-primary);
+}
+
+.original-price {
+    font-size: 15px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.discount-badge {
+    background: #ff4757;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+/* Product Offers Section */
+
+.product-offers-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.offer-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+}
+
+.offer-card:hover {
+    border-color: var(--store-primary);
+    background: rgba(var(--store-primary-rgb), 0.02);
+}
+
+.offer-card.selected {
+    border-color: var(--store-primary);
+    background: rgba(var(--store-primary-rgb), 0.05);
+    box-shadow: 0 0 0 3px rgba(var(--store-primary-rgb), 0.1);
+}
+
+.offer-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.offer-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.offer-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.offer-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.offer-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.offer-free-shipping-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: #dcfce7;
+    color: #166534;
+    margin-top: 4px;
+}
+
+.offer-pricing {
+    text-align: left;
+    flex-shrink: 0;
+}
+
+.offer-original-price {
+    display: block;
+    font-size: 13px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.offer-price {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Quantity Selector - visible UI removed, qty available in fast checkout & floating bar */
+
+/* Description */
+
+.product-description {
+    background: transparent;
+    padding: 24px;
+    margin-top: 10px;
+    border-radius: 12px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-top: 1em;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title i {
+    color: var(--store-primary);
+    font-size: 20px;
+}
+
+.description-text {
+    font-size: 16px;
+    line-height: 2;
+    color: #2d2d2d;
+    font-weight: 400;
+}
+
+/* Force clean styling on description content - override any pasted inline styles */
+
+.description-text * {
+    font-family: inherit !important;
+}
+
+/* Block dark backgrounds that break readability - allow colors through */
+
+.description-text p,
+.description-text div,
+.description-text li,
+.description-text blockquote {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Preserve intentional text formatting */
+
+.description-text strong,
+.description-text b {
+    font-weight: 700 !important;
+}
+
+/* Table styles for product descriptions */
+
+.description-text table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.description-text th,
+.description-text td {
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+    word-break: break-word;
+}
+
+.description-text thead th {
+    background-color: #f9fafb;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.description-text tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* Responsive table — horizontal scroll on small screens */
+
+.description-text-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0;
+}
+
+@media (max-width: 576px) {
+    .description-text table {
+        font-size: 13px;
+        min-width: 400px;
+    }
+    .description-text th,
+    .description-text td {
+        padding: 8px 6px;
+    }
+}
+
+.description-text em,
+.description-text i:not(.bi) {
+    font-style: italic !important;
+}
+
+.description-text u {
+    text-decoration: underline !important;
+}
+
+.description-text s,
+.description-text strike {
+    text-decoration: line-through !important;
+}
+
+.description-text ul,
+.description-text ol {
+    padding-inline-start: 25px;
+    margin: 12px 0;
+}
+
+.description-text li {
+    margin-bottom: 8px;
+}
+
+.description-text h1,
+.description-text h2,
+.description-text h3,
+.description-text h4,
+.description-text h5,
+.description-text h6 {
+    color: #1a1a2e !important;
+    margin: 18px 0 12px 0;
+    font-weight: 700;
+}
+
+.description-text h1 {
+    font-size: 1.5rem;
+}
+
+.description-text h2 {
+    font-size: 1.35rem;
+}
+
+.description-text h3 {
+    font-size: 1.2rem;
+}
+
+.description-text h4 {
+    font-size: 1.1rem;
+}
+
+.description-text p {
+    margin-bottom: 12px;
+}
+
+.description-text br {
+    display: block;
+    content: "";
+    margin-top: 6px;
+}
+
+/* Quill Editor Content Styles - Links */
+
+.description-text a {
+    color: var(--store-primary, #f59e0b) !important;
+    text-decoration: underline !important;
+    transition: color 0.2s ease;
+}
+
+.description-text a:hover {
+    color: var(--store-secondary, #fbbf24) !important;
+}
+
+/* Quill Editor Content Styles - Blockquote */
+
+.description-text blockquote {
+    border-inline-start: 4px solid var(--store-primary, #f59e0b);
+    padding-inline-start: 15px;
+    margin: 15px 0;
+    font-style: italic;
+    color: #555 !important;
+    background: rgba(0, 0, 0, 0.02);
+    padding: 12px 15px;
+    border-radius: 8px;
+}
+
+/* Quill Editor Content Styles - Images in Description */
+
+.description-text img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 12px;
+    margin: 0;
+    display: block;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    background: transparent !important;
+}
+
+/* Remove paragraph spacing when it wraps only an image (no surrounding text space) */
+
+.description-text p:has(> img:only-child) {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
+}
+
+/* Stacked images (sliced long descriptions) read as one continuous image */
+
+.description-text p:has(> img:only-child)+p:has(> img:only-child)>img,
+.description-text img+img {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: none;
+}
+
+.description-text p:has(> img:only-child):has(+ p > img:only-child)>img,
+.description-text img:has(+ img) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: none;
+}
+
+.description-text p:has(> img:only-child)+p:has(> br:only-child):has(+ p > img:only-child) {
+    display: none;
+}
+
+/* Mobile: image-only paragraphs bleed to the screen edge like the gallery; -24px undoes .product-description, -44px adds .product-info under a custom section order */
+
+@media (max-width: 767px) {
+    .description-text>p:has(> img: only-child) {
+        margin-inline: -24px;
+    }
+    .product-info .description-text>p:has(> img:only-child) {
+        margin-inline: -44px;
+    }
+    .description-text>p:has(> img:only-child)>img {
+        margin-inline: auto;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+/* Quill Editor Content Styles - Video Embeds */
+
+.description-text iframe,
+.description-text .ql-video {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 315px;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    margin: 20px 0;
+    display: block;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Vertical video support (TikTok, Instagram Reels, etc.) */
+
+.description-text iframe[src*="tiktok"],
+.description-text iframe[src*="instagram"] {
+    aspect-ratio: 9/16;
+    max-width: 350px;
+    min-height: 620px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Square video support */
+
+.description-text iframe[src*="facebook"] {
+    aspect-ratio: 1/1;
+    max-width: 500px;
+    min-height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Uploaded video support (HTML5 <video> tags from R2) */
+
+.description-text video {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    border-radius: 12px;
+    margin: 20px 0;
+    display: block;
+    background: #000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Quill Editor Content Styles - Text Alignment */
+
+.description-text .ql-align-center {
+    text-align: center !important;
+}
+
+.description-text .ql-align-right {
+    text-align: right !important;
+}
+
+.description-text .ql-align-left {
+    text-align: left !important;
+}
+
+.description-text .ql-align-justify {
+    text-align: justify !important;
+}
+
+/* Quill Editor Content Styles - Indentation */
+
+.description-text .ql-indent-1 {
+    padding-inline-start: 3em !important;
+}
+
+.description-text .ql-indent-2 {
+    padding-inline-start: 6em !important;
+}
+
+.description-text .ql-indent-3 {
+    padding-inline-start: 9em !important;
+}
+
+.description-text .ql-indent-4 {
+    padding-inline-start: 12em !important;
+}
+
+.description-text .ql-indent-5 {
+    padding-inline-start: 15em !important;
+}
+
+/* Responsive video on mobile */
+
+@media (max-width: 768px) {
+    .description-text iframe,
+    .description-text .ql-video {
+        border-radius: 8px;
+        margin: 15px 0;
+        min-height: 200px;
+    }
+    .description-text video {
+        border-radius: 8px;
+        margin: 15px 0;
+        height: auto;
+    }
+    /* Vertical videos on mobile */
+    .description-text iframe[src*="tiktok"],
+    .description-text iframe[src*="instagram"] {
+        max-width: 100%;
+        min-height: 450px;
+    }
+    /* Square videos on mobile */
+    .description-text iframe[src*="facebook"] {
+        max-width: 100%;
+        min-height: auto;
+        aspect-ratio: 1/1;
+    }
+    .description-text blockquote {
+        padding: 10px 12px;
+        margin: 12px 0;
+    }
+}
+
+/* Fixed Bottom Bar */
+
+.fixed-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 10px 16px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Pin to own opaque compositor layer. iOS Safari/WKWebView (Instagram,
+       Facebook, TikTok in-app browsers) otherwise hoists the animated
+       buy button into a separate GPU layer that doesn't inherit this
+       background, producing the "transparent strip" bug when the
+       keyboard opens or closes. */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    isolation: isolate;
+}
+
+/* Reserve space at the bottom of the product page on mobile so content
+   isn't hidden behind the floating bar, and so scrollIntoView({block:'center'})
+   math doesn't place fields behind it. env() gracefully returns 0 when
+   viewport-fit isn't cover, so this is identical to padding-bottom:90px
+   today and auto-adjusts if viewport-fit=cover is enabled later. */
+
+@media (max-width: 767px) {
+    body {
+        padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+    }
+    /* Phone bar hidden by the merchant (stores.buybar_show_mobile = 0): no reserve, no lift */
+    body.pd-no-buybar {
+        padding-bottom: 0;
+        --dz-hw-lift: 0px;
+    }
+    body.pd-no-buybar .whatsapp-float {
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+}
+
+/* Floating bar quantity selector */
+
+.fb-qty {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f8f9fa;
+    flex-shrink: 0;
+    height: 44px;
+}
+
+.fb-qty-btn {
+    width: 32px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.fb-qty-btn:hover {
+    background: var(--store-primary);
+    color: #fff;
+}
+
+.fb-qty-btn:active {
+    transform: scale(0.92);
+}
+
+.fb-qty-val {
+    width: 30px;
+    text-align: center;
+    /* 16px (not 14px) to prevent iOS Safari/WKWebView auto-zoom on focus.
+       Any input < 16px triggers a forced zoom that breaks page layout
+       and pushes the floating bar off-screen. */
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a2e;
+    border: none;
+    background: transparent;
+    -moz-appearance: textfield;
+    padding: 0;
+    height: 44px;
+    line-height: 44px;
+}
+
+.fb-qty-val::-webkit-outer-spin-button,
+.fb-qty-val::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Add to cart — icon-only square button */
+
+.btn-cart {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    padding: 0;
+    background: var(--store-primary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.btn-cart .btn-text {
+    display: none;
+}
+
+.btn-cart:hover {
+    background: var(--store-secondary);
+    transform: translateY(-2px);
+}
+
+.btn-cart:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Buy now — main CTA fills remaining space */
+
+.btn-buy-now {
+    flex: 1;
+    height: 44px;
+    padding: 0 20px;
+    background: var(--pd-buynow, #1a1a2e);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    will-change: transform, box-shadow;
+    animation: ctaPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transition: background 0.2s;
+}
+
+.btn-buy-now::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
+    transform: translateX(-100%);
+    will-change: transform;
+    animation: ctaShine 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes ctaPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(26, 26, 46, 0.15);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 4px 18px rgba(26, 26, 46, 0.22);
+    }
+}
+
+@keyframes ctaShine {
+    0%,
+    40% {
+        transform: translateX(-100%);
+    }
+    60%,
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.btn-buy-now:hover {
+    background: var(--pd-buynow-hover, #2d2d44);
+    animation: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px rgba(26, 26, 46, 0.22);
+}
+
+.btn-buy-now:hover::after {
+    animation: none;
+    transform: translateX(100%);
+}
+
+.btn-buy-now:active {
+    transform: scale(0.97);
+    animation: none;
+    transition: transform 0.1s;
+}
+
+.btn-buy-now:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    animation: none;
+    box-shadow: none;
+}
+
+.btn-buy-now:disabled::after {
+    display: none;
+}
+
+/* In-app browsers (Facebook, Instagram, TikTok, Telegram, Snapchat, etc.)
+   on iOS use WKWebView, which breaks on this button's pulse+shine
+   animation: the inner transform escapes the fixed bar's stacking
+   context and re-rasterizes without the parent background, looking
+   transparent or flickery especially when the keyboard opens/closes.
+   Disable the animation only for those clients — real Safari, Chrome,
+   Firefox, Edge keep the pulse. The .in-app-browser class is added to
+   <html> at views/layouts/store.php:223-227 via UA sniff. */
+
+.in-app-browser .btn-buy-now,
+.in-app-browser .btn-buy-now::after {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+}
+
+/* Touch devices: a sticky :hover state applied on tap can eat the first
+   tap on iOS (same class of bug as the product-card double-tap fix) and
+   leaves qty buttons visually "stuck" on Android. Neutralize hover-only
+   styling for coarse pointers; :active still gives tap feedback. */
+
+@media (hover: none) and (pointer: coarse) {
+    .btn-buy-now:hover {
+        background: var(--pd-buynow, #1a1a2e);
+        transform: none;
+        box-shadow: none;
+        animation: ctaPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    .fb-qty-btn:hover {
+        background: transparent;
+        color: #333;
+    }
+}
+
+/* Remove the double-tap-zoom click delay on the bar controls
+   (older Android WebViews / in-app browsers). */
+
+.fixed-bottom-bar button,
+.fb-qty-val {
+    touch-action: manipulation;
+}
+
+/* When one button is disabled, the other expands to fill */
+
+.fixed-bottom-bar .btn-cart:disabled+.btn-buy-now,
+.fixed-bottom-bar .btn-buy-now:only-child {
+    flex: 1;
+}
+
+.fixed-bottom-bar .btn-cart:only-child,
+.fixed-bottom-bar .btn-buy-now:disabled~.btn-cart {
+    flex: 1;
+    width: auto;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.fixed-bottom-bar .btn-buy-now:disabled~.btn-cart .btn-text {
+    display: inline;
+}
+
+/* Adaptive: when add to cart disabled, hide it and expand buy now */
+
+.fixed-bottom-bar[data-cart-disabled="true"] .btn-cart {
+    display: none;
+}
+
+.fixed-bottom-bar[data-cart-disabled="true"] .btn-buy-now {
+    flex: 1;
+}
+
+/* Adaptive: when buy now disabled, hide it and expand cart */
+
+.fixed-bottom-bar[data-buynow-disabled="true"] .btn-buy-now {
+    display: none;
+}
+
+.fixed-bottom-bar[data-buynow-disabled="true"] .btn-cart {
+    flex: 1;
+    width: auto;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.fixed-bottom-bar[data-buynow-disabled="true"] .btn-cart .btn-text {
+    display: inline;
+}
+
+/* Large buy buttons (stores.product_button_size = 'large'); the class selectors outrank the desktop block below */
+
+.fixed-bottom-bar.fb-size-large .fb-qty,
+.fixed-bottom-bar.fb-size-large .fb-qty-btn,
+.fixed-bottom-bar.fb-size-large .fb-qty-val {
+    height: 56px;
+}
+
+.fixed-bottom-bar.fb-size-large .fb-qty-val {
+    line-height: 56px;
+}
+
+.fixed-bottom-bar.fb-size-large .btn-cart {
+    height: 56px;
+    min-width: 56px;
+}
+
+.fixed-bottom-bar.fb-size-large .btn-cart .btn-text {
+    font-size: 17px;
+}
+
+.fixed-bottom-bar.fb-size-large .btn-buy-now {
+    height: 56px;
+    font-size: 17px;
+    line-height: 1.15;
+    white-space: normal;
+    text-align: center;
+}
+
+/* Fullscreen Gallery Modal */
+
+.fullscreen-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    z-index: 9999;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.fullscreen-modal.active {
+    display: block;
+}
+
+.fullscreen-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: background 0.2s;
+}
+
+.fullscreen-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.fullscreen-swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.fullscreen-swiper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fullscreen-swiper .swiper-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+    pointer-events: none;
+}
+
+.fullscreen-swiper .swiper-button-next,
+.fullscreen-swiper .swiper-button-prev {
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: background 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.fullscreen-swiper .swiper-button-next:hover,
+.fullscreen-swiper .swiper-button-prev:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.fullscreen-swiper .swiper-button-next::after,
+.fullscreen-swiper .swiper-button-prev::after {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.fullscreen-swiper .swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.5;
+}
+
+.fullscreen-swiper .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* Fast Checkout - Modern Clean Design */
+
+.fast-checkout-section {
+    background: var(--pd-fc-bg);
+    padding: 20px;
+    margin: 15px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    border: 2px solid var(--store-primary);
+    box-shadow: none;
+}
+
+/* Free Shipping Progress Bar */
+
+.fc-shipping-progress {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+}
+
+.fc-shipping-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.fc-shipping-label {
+    color: #333;
+    font-weight: 600;
+}
+
+.fc-shipping-amount {
+    color: var(--store-primary);
+    font-weight: 700;
+}
+
+.fc-progress-bar {
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.fc-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--store-primary), var(--store-secondary));
+    border-radius: 10px;
+    transition: width 0.5s ease-out;
+    position: relative;
+}
+
+.fc-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.fc-shipping-success {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+    border: 1px solid #22c55e;
+    animation: successPulse 2s ease-in-out infinite;
+}
+
+.fc-shipping-success .fc-progress-fill {
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+    width: 100% !important;
+}
+
+.fc-shipping-success .fc-shipping-label {
+    color: #22c55e;
+}
+
+.fc-shipping-success .fc-shipping-amount {
+    color: #22c55e;
+}
+
+@keyframes successPulse {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 15px 3px rgba(34, 197, 94, 0.15);
+    }
+}
+
+.fc-celebration {
+    display: none;
+    text-align: center;
+    font-size: 20px;
+    animation: bounce 0.5s ease;
+}
+
+.fc-shipping-success .fc-celebration {
+    display: block;
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.fast-checkout-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.fast-checkout-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fast-checkout-title i {
+    font-size: 22px;
+    color: var(--store-primary);
+    animation: bagBounce 2s ease-in-out infinite;
+}
+
+@keyframes bagBounce {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    15% {
+        transform: translateY(-3px) rotate(-5deg);
+    }
+    30% {
+        transform: translateY(0) rotate(0deg);
+    }
+    45% {
+        transform: translateY(-2px) rotate(5deg);
+    }
+    60% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+.fast-checkout-badge {
+    display: none;
+}
+
+.fast-checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fc-row {
+    display: grid;
+    grid-template-columns: var(--fc-grid-cols);
+    gap: 12px;
+}
+
+/* Input wrapper for icon support */
+
+.fc-input-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.fc-input-wrapper i {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    color: #999;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.fc-input {
+    width: 100%;
+    padding: var(--fc-input-padding);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    /* 16px to suppress iOS auto-zoom on input focus (any input < 16px
+       triggers it, shifting the floating bar off-screen and clipping
+       the page right edge — see screenshot 2 on 2026-05-18). */
+    font-size: 16px;
+    font-family: inherit;
+    background: #f9fafb;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.fc-input:focus {
+    outline: none;
+    border-color: var(--store-primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(var(--store-primary-rgb, 26, 26, 46), 0.1);
+}
+
+.fc-input::placeholder {
+    color: #999;
+}
+
+.fc-select {
+    width: 100%;
+    padding: var(--fc-input-padding);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    /* 16px to suppress iOS auto-zoom on focus (any input/select < 16px
+       triggers it). */
+    font-size: 16px;
+    font-family: inherit;
+    background: #f9fafb;
+    color: #333;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 12px center;
+    transition: all 0.2s;
+}
+
+.fc-select:focus {
+    outline: none;
+    border-color: var(--store-primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(var(--store-primary-rgb, 26, 26, 46), 0.1);
+}
+
+/* iOS focus-zoom guard (same principle as the login-page fix). Safari zooms the
+   whole page when you focus any text field with font-size < 16px — here the review
+   form (~13.6px) and the mobile sidebar search (~14px) triggered it. Force every
+   text-entry field to 16px on TOUCH devices only, so there is NO desktop change.
+   Android doesn't do this; the fast-checkout fields are already 16px (no-op). */
+
+@media (hover: none) and (pointer: coarse) {
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="password"],
+    input:not([type]),
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Wilaya select bold styling */
+
+#fc_wilaya,
+#fc_commune {
+    font-weight: 700;
+}
+
+/* Error state for inputs */
+
+.fc-input.fc-error,
+.fc-select.fc-error {
+    border-color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+    animation: shake 0.4s ease-in-out;
+}
+
+.fc-input.fc-error:focus,
+.fc-select.fc-error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Error state for delivery section */
+
+.fc-delivery-simple.fc-error-section {
+    background: #fef2f2;
+    border: 2px solid #ef4444 !important;
+    border-radius: 10px;
+    padding: 12px;
+    animation: shake 0.4s ease-in-out;
+}
+
+/* Error message styling */
+
+.fc-error-message {
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+    font-weight: 600;
+}
+
+.fc-error-message.show {
+    display: block;
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    20%,
+    60% {
+        transform: translateX(-5px);
+    }
+    40%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Sequential field guide animation */
+
+.fc-input-wrapper.fc-guide-active .fc-input,
+.fc-input-wrapper.fc-guide-active .fc-select {
+    border-color: var(--store-primary);
+    /* background-COLOR, not the shorthand: the shorthand resets background-repeat and
+       tiles the .fc-select chevron across the whole field. */
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(var(--store-primary-rgb, 26, 26, 46), 0.10);
+    animation: fcNudge 2.4s ease-in-out infinite;
+}
+
+@keyframes fcNudge {
+    0%,
+    100% {
+        transform: translateX(0);
+        box-shadow: 0 0 0 3px rgba(var(--store-primary-rgb, 26, 26, 46), 0.08);
+    }
+    20% {
+        transform: translateX(-2px);
+    }
+    40% {
+        transform: translateX(2px);
+    }
+    60% {
+        transform: translateX(-1.5px);
+    }
+    70% {
+        transform: translateX(1px);
+    }
+    80% {
+        transform: translateX(0);
+        box-shadow: 0 0 0 5px rgba(var(--store-primary-rgb, 26, 26, 46), 0.14);
+    }
+}
+
+.fc-input-wrapper.fc-guide-active .fc-input:focus,
+.fc-input-wrapper.fc-guide-active .fc-select:focus {
+    animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fc-input-wrapper.fc-guide-active .fc-input,
+    .fc-input-wrapper.fc-guide-active .fc-select {
+        animation: none;
+    }
+}
+
+.fc-input-wrapper.fc-guide-done .fc-input,
+.fc-input-wrapper.fc-guide-done .fc-select {
+    border-color: #22c55e;
+    background-color: #f0fdf4;
+    animation: none;
+    box-shadow: none;
+}
+
+/* Submit button animated ready state */
+
+.fc-submit-btn.fc-btn-ready {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, box-shadow;
+    animation: ctaPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.fc-submit-btn.fc-btn-ready::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.18) 50%, transparent 60%);
+    transform: translateX(-100%);
+    will-change: transform;
+    animation: ctaShine 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.fc-submit-btn.fc-btn-ready:hover {
+    animation: none;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.fc-submit-btn.fc-btn-ready:hover::after {
+    animation: none;
+    transform: translateX(100%);
+}
+
+/* Delivery Section Label */
+
+/* Simple Delivery Selection with Radio */
+
+.fc-delivery-simple {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.fc-delivery-label-inline {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.fc-delivery-options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.fc-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.fc-radio-label.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.fc-radio-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--store-primary);
+    cursor: pointer;
+}
+
+.fc-radio-label.disabled input[type="radio"] {
+    cursor: not-allowed;
+}
+
+.fc-radio-price {
+    font-size: 12px;
+    color: #22c55e;
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+/* Order Section */
+
+.fc-order-section {
+    margin-top: 15px;
+}
+
+.fc-total-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.fc-total-label {
+    color: #333;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.fc-total-price {
+    color: #333;
+    font-size: 28px;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1;
+}
+
+.fc-total-original {
+    font-size: 13px;
+    font-weight: 500;
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 2px;
+}
+
+/* Quantity in Fast Checkout */
+
+.fc-quantity-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.fc-quantity-label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Order Row - Quantity + Button inline */
+
+.fc-order-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.fc-quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+.fc-qty-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: #f5f5f5;
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fc-qty-btn:hover {
+    background: var(--store-primary);
+    color: #fff;
+}
+
+.fc-qty-btn:active {
+    transform: scale(0.95);
+}
+
+.fc-qty-input {
+    width: 50px;
+    height: 44px;
+    border: none;
+    border-left: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    background: #fff;
+    color: #333;
+    -moz-appearance: textfield;
+}
+
+.fc-qty-input::-webkit-outer-spin-button,
+.fc-qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Submit Button - Inline with quantity */
+
+.fc-submit-btn {
+    flex: 1;
+    padding: 14px 20px;
+    background: var(--pd-fc-btn, var(--store-primary));
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    height: 48px;
+}
+
+.fc-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.fc-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.fc-submit-btn.loading .btn-text,
+.fc-submit-btn.loading i {
+    display: none;
+}
+
+.fc-submit-btn .spinner {
+    display: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.fc-submit-btn.loading .spinner {
+    display: block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Large order button (stores.product_button_size = 'large'); the id outranks every FC theme's own submit rule */
+
+.fast-checkout-section.fc-size-large #btnFastCheckout {
+    min-height: 56px;
+    font-size: 17px;
+}
+
+.fast-checkout-section.fc-size-large .fcc-order,
+.fast-checkout-section.fc-size-large .fce-order,
+.fast-checkout-section.fc-size-large .fcs-order,
+.fast-checkout-section.fc-size-large .fck-foot {
+    align-items: center;
+}
+
+/* Without the stepper the button takes its column (stores.fc_show_qty = 0) */
+
+.fast-checkout-section.fc-no-qty .fcc-order,
+.fast-checkout-section.fc-no-qty .fce-order,
+.fast-checkout-section.fc-no-qty .fcs-order {
+    grid-template-columns: 1fr;
+}
+
+.fast-checkout-section.fc-no-qty .fck-foot {
+    grid-template-columns: 1fr auto;
+}
+
+/* Desktop Styles */
+
+@media (min-width: 768px) {
+    .stock-badge {
+        font-size: 12px;
+        padding: 3px 10px;
+        gap: 4px;
+    }
+    .stock-badge i {
+        font-size: 12px;
+    }
+    .product-page {
+        padding: 30px 0 50px;
+    }
+    .product-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    .product-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        background: transparent;
+        border-radius: 0;
+        padding: 0;
+        box-shadow: none;
+        align-items: start;
+    }
+    /* Left column wrapper: stacks info + checkout tightly */
+    .product-left-column {
+        order: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    /* Left column: info + checkout - scrolls normally */
+    .product-info {
+        margin-top: 0;
+        padding: 24px 30px 12px;
+        box-shadow: none;
+        background: transparent;
+        border-radius: 16px 0 0 0;
+        min-height: auto;
+    }
+    /* Right column: gallery - sticky */
+    .gallery-section {
+        order: 2;
+        position: sticky;
+        top: 20px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: none;
+        align-self: start;
+    }
+    .main-swiper {
+        border-radius: 0;
+        aspect-ratio: 1/1;
+        height: auto;
+        max-height: 550px;
+    }
+    .main-swiper .swiper-slide img {
+        object-fit: var(--pd-img-fit);
+        border-radius: 0;
+    }
+    .thumb-swiper {
+        padding: 10px 12px;
+        background: transparent;
+    }
+    .thumb-swiper .swiper-slide {
+        width: 72px;
+        height: 72px;
+        border-radius: 12px;
+    }
+    /* Stacked layout on desktop */
+    .stacked-gallery {
+        order: 2;
+        align-self: start;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+    .product-title {
+        font-size: 24px;
+        line-height: 1.35;
+    }
+    .current-price {
+        font-size: 26px;
+    }
+    .fixed-bottom-bar {
+        position: static;
+        box-shadow: none;
+        padding: 20px 0 0;
+        background: transparent;
+    }
+    .fb-qty {
+        height: 46px;
+    }
+    .fb-qty-btn {
+        width: 36px;
+        height: 46px;
+    }
+    .fb-qty-val {
+        width: 36px;
+        height: 46px;
+        line-height: 46px;
+        font-size: 15px;
+    }
+    .btn-cart {
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+        font-size: 20px;
+    }
+    .btn-buy-now {
+        height: 46px;
+        font-size: 15px;
+    }
+    .product-description {
+        margin: 0;
+        padding: 20px 30px;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+    .quick-order-section {
+        margin-top: 16px;
+        border-radius: 12px;
+    }
+    /* Fast checkout inside left column on desktop */
+    .fast-checkout-section {
+        margin: 16px 24px;
+        padding: 20px;
+        border-radius: 16px;
+        border: 2px solid var(--store-primary);
+        box-shadow: none;
+        background: var(--pd-fc-bg);
+    }
+    /* Bottom rounding on the last visible element in left column */
+    .product-left-column>*:last-child {
+        border-radius: 0 0 0 16px;
+    }
+    /* Wrap both info and checkout in the left flow */
+    .desktop-left-column {
+        display: contents;
+    }
+}
+
+/* Related Products Section */
+
+.related-products-section {
+    padding: 32px 0 40px;
+    background: #f8f9fa;
+}
+
+.related-products-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.related-products-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.related-products-title i {
+    font-size: 18px;
+    color: var(--store-primary, #1a1a2e);
+}
+
+.related-products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.related-product-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.related-product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.related-product-image {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #f5f5f7;
+}
+
+.related-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.related-product-card:hover .related-product-image img {
+    transform: scale(1.05);
+}
+
+.related-product-no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 2.5rem;
+}
+
+.related-product-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #ef4444;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.related-product-badge.out-of-stock {
+    background: #6b7280;
+}
+
+.related-product-info {
+    padding: 10px 12px 14px;
+}
+
+.related-product-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 6px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.related-product-price {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.related-current-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--store-primary, #1a1a2e);
+}
+
+.related-original-price {
+    font-size: 12px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+/* Responsive: 3 columns on tablet */
+
+@media (min-width: 576px) {
+    .related-products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+    }
+}
+
+/* Responsive: 4 columns on desktop */
+
+@media (min-width: 768px) {
+    .related-products-section {
+        padding: 40px 0 50px;
+    }
+    .related-products-container {
+        padding: 0 20px;
+    }
+    .related-products-title {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+    .related-products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+    .related-product-info {
+        padding: 12px 14px 16px;
+    }
+    .related-product-name {
+        font-size: 14px;
+    }
+    .related-current-price {
+        font-size: 16px;
+    }
+}
+
+/* Fly-to-Cart Animation */
+
+.fly-to-cart {
+    position: fixed;
+    z-index: 99999;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--store-primary, #6366f1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    opacity: 1;
+    transition: none;
+}
+
+.fly-to-cart.flying {
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    transform: scale(0.2);
+}
+
+@keyframes cartBounce {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.3);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    70% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cart-bounce {
+    animation: cartBounce 0.5s ease;
+}
+
+/* Toast Notification */
+
+.toast {
+    position: fixed;
+    /* Sit clear of the ~90px floating buy bar and the iPhone home indicator
+       (env() returns 0 when viewport-fit isn't cover, so this is 100px on
+       most devices today — same as before). */
+    bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #1a1a2e;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 1000;
+    opacity: 0;
+    /* Hidden state MUST be untouchable: translateY(100px) parks the toast
+       exactly over the floating buy bar, and an opacity-0 element still
+       intercepts taps — an invisible strip that ate Buy Now clicks
+       (worst in in-app browsers right after an error toast widened it). */
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast.success {
+    background: #10b981;
+}
+
+.toast.error {
+    background: #ef4444;
+}
+
+.toast i {
+    font-size: 18px;
+}
+
+/* Variant Error State */
+
+.variant-group.error .variant-label {
+    color: #ef4444;
+}
+
+.variant-group.error .color-swatches,
+.variant-group.error .text-options {
+    border: 2px solid #ef4444;
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(239, 68, 68, 0.05);
+    animation: shake 0.5s ease-in-out;
+}
+
+.variant-group.error .selected-variant-name {
+    color: #ef4444;
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    20%,
+    60% {
+        transform: translateX(-5px);
+    }
+    40%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Per-Piece Variant Selection (multi-quantity offers) */
+
+.per-piece-variants-section {
+    margin-bottom: 20px;
+}
+
+.per-piece-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, rgba(var(--store-primary-rgb), 0.08), rgba(var(--store-primary-rgb), 0.03));
+    border-radius: 10px;
+    border: 1px solid rgba(var(--store-primary-rgb), 0.15);
+}
+
+.per-piece-header i {
+    color: var(--store-primary);
+    font-size: 18px;
+}
+
+.per-piece-header span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+.piece-item {
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.piece-item.active {
+    border-color: var(--store-primary);
+    box-shadow: 0 2px 12px rgba(var(--store-primary-rgb), 0.12);
+}
+
+.piece-item.completed {
+    border-color: #10b981;
+}
+
+.piece-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.piece-header:hover {
+    background: #f9fafb;
+}
+
+.piece-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.piece-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+    font-weight: 700;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.piece-item.active .piece-number {
+    background: var(--store-primary);
+    color: #fff;
+}
+
+.piece-item.completed .piece-number {
+    background: #10b981;
+    color: #fff;
+}
+
+.piece-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.piece-status {
+    font-size: 12px;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.piece-item.completed .piece-status {
+    color: #10b981;
+}
+
+.piece-body {
+    padding: 0 14px 14px;
+    display: none;
+}
+
+.piece-item.active .piece-body {
+    display: block;
+}
+
+.piece-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.piece-summary .ps-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(var(--store-primary-rgb), 0.08);
+    color: var(--store-primary);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.piece-summary .ps-tag .ps-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Loading state */
+
+.btn-loading {
+    pointer-events: none;
+}
+
+.btn-loading .btn-text {
+    visibility: hidden;
+}
+
+.btn-loading::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Product Addons Styling */
+
+.addons-section {
+    margin: 24px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.03) 0%, rgba(168, 85, 247, 0.03) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(236, 72, 153, 0.12);
+}
+
+.addons-title {
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: inherit;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.addons-title i {
+    color: #ec4899;
+    font-size: 1.1rem;
+}
+
+.addon-field {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(236, 72, 153, 0.08);
+}
+
+.addon-field:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.addon-label {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: inherit;
+}
+
+.addon-label .required-star {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+.addon-label .addon-price {
+    color: #10b981;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: rgba(16, 185, 129, 0.1);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.addon-input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.25s ease;
+    font-family: inherit;
+}
+
+.addon-input:focus {
+    outline: none;
+    border-color: #ec4899;
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.15);
+    background: #fff;
+}
+
+.addon-input::placeholder {
+    color: rgba(0, 0, 0, 0.35);
+}
+
+textarea.addon-input {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.addon-image-upload {
+    position: relative;
+}
+
+.addon-upload-area {
+    border: 2px dashed rgba(236, 72, 153, 0.35);
+    border-radius: 14px;
+    padding: 28px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(236, 72, 153, 0.03);
+}
+
+.addon-upload-area:hover {
+    border-color: #ec4899;
+    background: rgba(236, 72, 153, 0.08);
+    transform: translateY(-1px);
+}
+
+.addon-upload-area i {
+    font-size: 2.2rem;
+    color: #ec4899;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.addon-upload-area span {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 0.95rem;
+    display: block;
+}
+
+.addon-upload-area small {
+    display: block;
+    color: rgba(0, 0, 0, 0.4);
+    margin-top: 6px;
+    font-size: 0.8rem;
+}
+
+.addon-image-preview {
+    display: none;
+    margin-top: 12px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.addon-image-preview img {
+    max-width: 100%;
+    max-height: 220px;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.addon-image-preview button {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.9);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.addon-image-preview button:hover {
+    background: #ef4444;
+    transform: scale(1.1);
+}
+
+.addon-field.error .addon-input {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.03);
+}
+
+.addon-field.error .addon-upload-area {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.03);
+}
+
+/* Product Variants */
+
+.variants-section {
+    margin-bottom: 20px;
+}
+
+.variant-group {
+    margin-bottom: 15px;
+}
+
+.variant-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Color Swatches */
+
+.color-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.color-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-swatch:active {
+    transform: scale(0.95);
+}
+
+.color-swatch.selected {
+    border-color: var(--store-primary);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.swatch-check {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 14px;
+    opacity: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.color-swatch.selected .swatch-check {
+    opacity: 1;
+}
+
+.selected-variant-name {
+    font-size: 12px;
+    color: var(--store-primary);
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+/* Text/Size Options */
+
+.text-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* specificity 4: outranks the skins' boosted .text-options display rules */
+
+.variants-section .variant-group .text-options.variant-dropdown-src {
+    display: none;
+}
+
+.variants-section .variant-dropdown {
+    width: 100%;
+    max-width: 100%;
+    min-height: 44px;
+    font-size: 16px;
+    padding-block: 10px;
+    padding-inline: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    appearance: auto;
+    box-sizing: border-box;
+}
+
+.variant-group.error .variant-dropdown {
+    border-color: #dc3545;
+}
+
+.text-option {
+    padding: 10px 18px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.text-option:hover {
+    border-color: var(--store-primary);
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.text-option:active {
+    transform: scale(0.95);
+}
+
+.text-option.selected {
+    border-color: var(--store-primary);
+    background: var(--store-primary);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.option-price {
+    display: inline-flex;
+    align-items: center;
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 3px 8px;
+    margin-inline-start: 7px;
+    border-radius: 999px;
+    background: #16a34a;
+    color: #fff;
+    white-space: nowrap;
+    vertical-align: middle;
+    letter-spacing: 0.2px;
+}
+
+.option-price.negative {
+    background: #dc2626;
+    color: #fff;
+}
+
+.text-option.selected .option-price {
+    background: rgba(255, 255, 255, 0.28);
+    color: #fff;
+    box-shadow: none;
+}
+
+/* Sold-out variant styles */
+
+.color-swatch.sold-out {
+    opacity: 0.35;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.color-swatch.sold-out:hover {
+    transform: none;
+}
+
+.swatch-soldout-line {
+    position: absolute;
+    top: 50%;
+    left: -2px;
+    right: -2px;
+    height: 2px;
+    background: #ef4444;
+    transform: rotate(-45deg);
+    border-radius: 1px;
+}
+
+.text-option.sold-out {
+    opacity: 0.4;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    border-color: #e5e7eb;
+    background: #f3f4f6;
+}
+
+.text-option.sold-out:hover {
+    border-color: #e5e7eb;
+    background: #f3f4f6;
+    transform: none;
+}
+
+/* Combination "doesn't fit your current pick" — dimmed but STILL clickable.
+   Clicking it clears the conflicting other-group selection and re-narrows, so
+   the shopper can never dead-end. Distinct from .sold-out (which is unclickable
+   with a red strike-line); this state has no strike-line and keeps a pointer. */
+
+.variants-section .color-swatch.variant-incompatible,
+.variants-section .text-option.variant-incompatible,
+.variants-section .image-text-option.variant-incompatible {
+    opacity: 0.45;
+    cursor: pointer;
+    position: relative;
+}
+
+.variants-section .text-option.variant-incompatible {
+    text-decoration: line-through;
+}
+
+/* Muted (grey) diagonal slash for the soft "doesn't fit your pick" state —
+   clearly reads as "not available now" yet stays distinct from the RED
+   permanent sold-out line (.swatch-soldout-line). */
+
+.swatch-incompat-line {
+    position: absolute;
+    top: 50%;
+    left: -2px;
+    right: -2px;
+    height: 2px;
+    background: #9ca3af;
+    transform: rotate(-45deg);
+    border-radius: 1px;
+    pointer-events: none;
+}
+
+/* ===== Variant section overall polish ===== */
+
+.variants-section {
+    margin: 18px 0 22px;
+    padding: 0;
+}
+
+.variants-section .variant-group {
+    margin-bottom: 18px;
+}
+
+.variants-section .variant-label {
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 0.2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.variants-section .variant-label .text-danger {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+.variants-section .color-swatches,
+.variants-section .text-options,
+.variants-section .image-text-options {
+    gap: 12px;
+    align-items: flex-start;
+}
+
+/* ===== Image-aware variant cards (color-with-thumb + image_text type) ===== */
+
+/* Outer button is a vertical stack: image-card on top, dot+label below */
+
+/* === Variant card defaults (has-thumb + image-text-option) ===========
+   Each selector below is scoped under
+     .variants-section:not([class*="variant-style-"])
+   so the rules ONLY apply when no variant style is active. When a variant
+   style is on the wrapper, the :not() doesn't match and defaults are
+   inert — the variant style's CSS becomes the sole source of styling.
+   No @layer wrapping (it would make these rules lose to the unlayered
+   .color-swatch legacy rule at L2598, reverting cards to 40px circles).
+   ====================================================================== */
+
+.variants-section:not([class*="variant-style-"]) .color-swatch.has-thumb,
+.variants-section:not([class*="variant-style-"]) .image-text-option {
+    width: 88px;
+    height: auto;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: relative;
+    overflow: visible;
+    -webkit-user-select: none;
+    user-select: none;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Block legacy .color-swatch:hover { transform: scale(1.1) } from applying
+   to image cards (default behavior). Variant styles get higher specificity
+   via the .variants-section bump in the resolver, so they can override this
+   for their own hover lift animations. */
+
+.variants-section:not([class*="variant-style-"]) .color-swatch.has-thumb:hover,
+.variants-section:not([class*="variant-style-"]) .image-text-option:hover {
+    transform: none;
+}
+
+/* Inner-span rules — kept low-specificity so variant styles can override.
+   These classes (.swatch-thumb-img, .opt-thumb-img, .swatch-meta, .swatch-color-dot,
+   .swatch-label, .opt-label) are emitted ONLY inside their parent contexts
+   (has-thumb or image-text-option buttons) by the PHP renderer, so stripping
+   the parent qualifier is functionally identical for default-style stores
+   but lets variant-style CSS (bumped to .variants-section.variant-style-X)
+   win the specificity war. */
+
+.variants-section:not([class*="variant-style-"]) .swatch-thumb-img,
+.variants-section:not([class*="variant-style-"]) .opt-thumb-img {
+    width: 100%;
+    height: 88px;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f3f4f6;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+    transition: transform .18s cubic-bezier(.4, 0, .2, 1), box-shadow .18s cubic-bezier(.4, 0, .2, 1), border-color .18s;
+    position: relative;
+}
+
+.variants-section:not([class*="variant-style-"]) .color-swatch:hover .swatch-thumb-img,
+.variants-section:not([class*="variant-style-"]) .image-text-option:hover .opt-thumb-img {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.26);
+}
+
+.variants-section:not([class*="variant-style-"]) .color-swatch:hover:not(.selected):not(.sold-out) .swatch-thumb-img,
+.variants-section:not([class*="variant-style-"]) .image-text-option:hover:not(.selected):not(.sold-out) .opt-thumb-img {
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+.variants-section:not([class*="variant-style-"]) .color-swatch.selected .swatch-thumb-img,
+.variants-section:not([class*="variant-style-"]) .image-text-option.selected .opt-thumb-img {
+    transform: none;
+    border-color: var(--store-primary);
+    box-shadow: 0 8px 22px rgba(99, 102, 241, 0.4), 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+.variants-section:not([class*="variant-style-"]) .swatch-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 0 2px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.variants-section:not([class*="variant-style-"]) .swatch-color-dot {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+}
+
+.variants-section:not([class*="variant-style-"]) .swatch-label {
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--store-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1 1 auto;
+    text-align: start;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    text-shadow: none;
+    border-radius: 0;
+}
+
+/* image_text: label sits as a pill INSIDE the bottom of the image card.
+   Selectors stripped to .opt-thumb-img / .opt-label so variant styles can override. */
+
+.variants-section:not([class*="variant-style-"]) .image-text-options .opt-thumb-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 8px;
+}
+
+.variants-section:not([class*="variant-style-"]) .opt-label {
+    background: #fff;
+    color: #111827;
+    font-size: 11.5px;
+    font-weight: 700;
+    line-height: 1.15;
+    padding: 4px 9px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: calc(100% - 6px);
+    margin: 0;
+    text-shadow: none;
+    z-index: 1;
+    letter-spacing: 0.1px;
+}
+
+.variants-section:not([class*="variant-style-"]) .selected-variant-name:empty {
+    display: none;
+}
+
+/* Inner-span rules stripped of parent qualifiers — see explainer above .swatch-thumb-img rule. */
+
+.variants-section:not([class*="variant-style-"]) .swatch-thumb-img>.swatch-check,
+.variants-section:not([class*="variant-style-"]) .opt-thumb-img>.opt-check {
+    position: absolute;
+    top: 6px;
+    inset-inline-start: 6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--store-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity .18s, transform .18s cubic-bezier(.4, 0, .2, 1);
+    text-shadow: none;
+    z-index: 2;
+}
+
+.variants-section:not([class*="variant-style-"]) .color-swatch.selected .swatch-thumb-img>.swatch-check,
+.variants-section:not([class*="variant-style-"]) .image-text-option.selected .opt-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.variants-section:not([class*="variant-style-"]) .color-swatch.has-thumb.sold-out,
+.variants-section:not([class*="variant-style-"]) .image-text-option.sold-out {
+    cursor: not-allowed;
+}
+
+.variants-section:not([class*="variant-style-"]) .color-swatch.sold-out .swatch-thumb-img,
+.variants-section:not([class*="variant-style-"]) .image-text-option.sold-out .opt-thumb-img {
+    opacity: 0.55;
+    filter: grayscale(0.4);
+}
+
+.variants-section:not([class*="variant-style-"]) .color-swatch.sold-out .swatch-label,
+.variants-section:not([class*="variant-style-"]) .image-text-option.sold-out .opt-label {
+    text-decoration: line-through;
+    text-decoration-color: #ef4444;
+    text-decoration-thickness: 2px;
+    color: #6b7280;
+}
+
+.variants-section:not([class*="variant-style-"]) .color-swatch.sold-out .swatch-thumb-img::after,
+.variants-section:not([class*="variant-style-"]) .image-text-option.sold-out .opt-thumb-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, transparent 0%, transparent 47%, #ef4444 49%, #ef4444 51%, transparent 53%, transparent 100%);
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.variants-section:not([class*="variant-style-"]) .color-swatch.has-thumb .swatch-soldout-line {
+    display: none;
+}
+
+.variants-section:not([class*="variant-style-"]) .image-text-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.variants-section:not([class*="variant-style-"]) .image-text-option.no-thumb {
+    width: auto;
+}
+
+.variants-section:not([class*="variant-style-"]) .image-text-option.no-thumb .opt-thumb-img {
+    height: auto;
+    min-height: 44px;
+    border: 2px solid #e5e7eb;
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+}
+
+.variants-section:not([class*="variant-style-"]) .image-text-option.no-thumb .opt-label {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    color: #111827;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+    max-width: 100%;
+}
+
+.variants-section:not([class*="variant-style-"]) .image-text-option.no-thumb .opt-check {
+    background: var(--store-primary);
+}
+
+/* the .no-thumb tile rules above tie the .selected rule on specificity and win by source
+   order — re-assert the selection affordance for selected no-thumb text tiles */
+
+.variants-section:not([class*="variant-style-"]) .image-text-option.no-thumb.selected .opt-thumb-img {
+    border-color: var(--store-primary);
+    box-shadow: 0 8px 22px rgba(99, 102, 241, 0.4), 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+/* ===== Price-adjustment pill =====
+   MUST stay scoped under :not([class*="variant-style-"]) like every other default:
+   all 12 style packs re-position the pill with inset-block-start(or end) plus
+   inset-inline-start, and an unscoped top and inset-inline-end here combine with
+   them to set all four sides — the absolutely-positioned pill then STRETCHES over
+   the whole card (the "giant dark circle covering the image card" bug, 2026-08-18). */
+
+.variants-section:not([class*="variant-style-"]) .opt-price-pill {
+    position: absolute;
+    top: -7px;
+    inset-inline-end: -7px;
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #16a34a;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22), 0 0 0 1.5px rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+    z-index: 3;
+    pointer-events: none;
+    letter-spacing: 0.2px;
+}
+
+.variants-section:not([class*="variant-style-"]) .opt-price-pill.neg {
+    background: #dc2626;
+}
+
+[dir="rtl"] .variants-section:not([class*="variant-style-"]) .opt-price-pill {
+    right: auto;
+    left: -7px;
+}
+
+/* ===== Mobile tightening ===== */
+
+@media (max-width: 480px) {
+    .color-swatch.has-thumb,
+    .image-text-option {
+        width: 76px;
+    }
+    .color-swatch.has-thumb .swatch-thumb-img,
+    .image-text-option .opt-thumb-img {
+        height: 76px;
+    }
+    .color-swatch.has-thumb .swatch-label,
+    .image-text-option .opt-label {
+        font-size: 10.5px;
+    }
+    .variants-section:not([class*="variant-style-"]) .opt-price-pill {
+        font-size: 9.5px;
+        padding: 3px 7px;
+    }
+    .variants-section .color-swatches,
+    .variants-section .text-options,
+    .variants-section .image-text-options {
+        gap: 10px;
+    }
+}
+
+/* ===== Mini cart panel (below fast checkout) ===== */
+
+.pd-cart-panel[hidden] {
+    display: none !important;
+}
+
+.pd-cart-panel {
+    margin-top: 14px;
+}
+
+.pd-cart-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.pd-cart-head {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.pd-cart-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #111827;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.pd-cart-title i {
+    color: var(--pd-primary);
+}
+
+.pd-cart-items {
+    max-height: 260px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.pd-cart-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.pd-cart-row:last-child {
+    border-bottom: 0;
+}
+
+.pd-cart-row img {
+    width: 44px;
+    height: 44px;
+    border-radius: 9px;
+    object-fit: cover;
+    background: #f3f4f6;
+    flex: 0 0 auto;
+}
+
+.pd-cart-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.pd-cart-name {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.pd-cart-variant {
+    margin: 1px 0 0;
+    font-size: 11.5px;
+    color: #6b7280;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.pd-cart-price {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--pd-primary);
+}
+
+.pd-cart-remove {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #fff;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    flex: 0 0 auto;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.pd-cart-remove:hover {
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.pd-cart-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.02);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.pd-cart-subtotal {
+    font-size: 13px;
+    color: #4b5563;
+}
+
+.pd-cart-subtotal strong {
+    color: #111827;
+}
+
+.pd-cart-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pd-primary);
+    text-decoration: none;
+    min-height: 34px;
+}
+
+.pd-cart-link:hover {
+    text-decoration: underline;
+    color: var(--pd-primary);
+}
+
+/* ===== iOS overflow armor for the stop-desk selector =====
+   The desk <select> carries long option labels (provider + address); on iOS
+   Safari an unconstrained select's intrinsic width can graze past the
+   viewport, making the whole page zoom out and pan sideways. Hard-constrain
+   the relocated wrapper and everything inside it. */
+
+#fc_desk_wrapper {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#fc_desk_wrapper select {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+#fc_desk_details {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Page-level armor: nothing on the conversion page may ever widen the
+   viewport on real iOS. clip (not hidden) so no scroll container is created
+   and position:sticky keeps working; older engines ignore it harmlessly. */
+
+html,
+body {
+    overflow-x: clip;
+}

@@ -1,0 +1,220 @@
+/* Footer Styles - Shared Partial */
+
+.footer {
+    background: var(--sf-bg);
+    color: var(--sf-text);
+    padding: 60px 0 30px;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-brand {
+    margin-bottom: 20px;
+}
+
+.footer-brand img {
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.footer-brand h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-top: 1.33em;
+    margin-bottom: 10px;
+    color: var(--sf-text);
+}
+
+.footer-description {
+    color: var(--sf-soft);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.footer-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 1.67em;
+    margin-bottom: 20px;
+    color: var(--sf-text);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--sf-soft);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--sf-primary);
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--sf-soft);
+}
+
+.footer-contact li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--sf-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-contact li a:hover {
+    color: var(--sf-primary);
+}
+
+.footer-contact li i {
+    color: var(--sf-primary);
+}
+
+.footer .social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.footer .social-links a {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--sf-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sf-text);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.1rem;
+}
+
+.footer .social-links a:hover {
+    background: linear-gradient(135deg, var(--sf-primary), var(--sf-secondary));
+    transform: translateY(-3px);
+    color: #fff;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--sf-line);
+    padding-top: 25px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+}
+
+.footer-copyright {
+    color: var(--sf-muted);
+    font-size: 0.9rem;
+}
+
+/* DZBuild Branding */
+
+.minacef-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--sf-soft);
+    font-size: 0.9rem;
+    background: var(--sf-surface);
+    padding: 8px 16px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.minacef-brand:hover {
+    background: var(--sf-line-strong);
+}
+
+.minacef-brand img {
+    height: 22px;
+    opacity: 0.9;
+}
+
+.minacef-brand .brand-name {
+    color: #3B82F6 !important;
+    font-weight: 600;
+}
+
+.minacef-brand:hover .brand-name {
+    color: #2563EB !important;
+    text-decoration: underline;
+}
+
+/* WhatsApp Float Button */
+
+.whatsapp-float {
+    position: fixed;
+    bottom: calc(25px + var(--dz-hw-lift, 0px) + env(safe-area-inset-bottom, 0px));
+    left: 25px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.8rem;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+    color: #fff;
+}
+
+.whatsapp-float.dzhw-direct svg {
+    width: 30px;
+    height: 30px;
+}
+
+/* iOS: scale-on-hover eats the first tap on touch devices */
+
+@media (hover: none) and (pointer: coarse) {
+    .whatsapp-float:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: calc(20px + var(--dz-hw-lift, 0px) + env(safe-area-inset-bottom, 0px));
+        left: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.6rem;
+    }
+}

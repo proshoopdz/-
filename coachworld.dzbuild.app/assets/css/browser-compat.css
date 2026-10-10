@@ -1,0 +1,258 @@
+/**
+ * Browser Compatibility CSS Fixes
+ * Fallbacks for older browsers
+ */
+
+/* ============================================
+   CRITICAL: OLD BROWSER FALLBACK
+   If JS fails or times out, show all content
+   ============================================ */
+
+/* Fallback triggered by JS after 3 seconds timeout */
+
+.js-loading-fallback img[loading="lazy"],
+.js-loading-fallback .scroll-reveal,
+.js-loading-fallback .product-card,
+.js-loading-fallback .category-card,
+.js-loading-fallback section,
+.js-loading-fallback main {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* ============================================
+   VIEWPORT HEIGHT FALLBACKS
+   ============================================ */
+
+/* Fallback for browsers without dvh support */
+
+.full-height {
+    min-height: 100vh;
+    /* Fallback */
+    min-height: 100dvh;
+    /* Modern browsers */
+    min-height: calc(var(--vh, 1vh) * 100);
+    /* JS fallback */
+}
+
+/* ============================================
+   BACKDROP FILTER FALLBACKS
+   ============================================ */
+
+/* For browsers that don't support backdrop-filter */
+
+@supports not (backdrop-filter: blur(10px)) {
+    .glass-effect,
+    .navbar-glass {
+        background-color: rgba(255, 255, 255, 0.95) !important;
+    }
+    .glass-effect-dark,
+    .navbar-glass-dark {
+        background-color: rgba(0, 0, 0, 0.9) !important;
+    }
+}
+
+/* ============================================
+   FLEXBOX GAP FALLBACKS
+   ============================================ */
+
+/* For Safari < 14.1 that doesn't support gap in flexbox */
+
+@supports not (gap: 1px) {
+    .flex-gap-sm>* {
+        margin: 4px;
+    }
+    .flex-gap>* {
+        margin: 8px;
+    }
+    .flex-gap-lg>* {
+        margin: 12px;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    /* Hide non-essential elements */
+    .navbar-store,
+    .mobile-nav,
+    .sidebar,
+    .whatsapp-float,
+    .cart-icon,
+    .announcement-bar,
+    footer,
+    .no-print,
+    .btn,
+    button:not(.print-btn),
+    .social-icons,
+    .share-buttons,
+    .back-to-top,
+    video,
+    iframe,
+    .modal,
+    .modal-backdrop {
+        display: none !important;
+    }
+    /* Reset backgrounds for printing */
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt !important;
+        line-height: 1.5 !important;
+    }
+    /* Ensure content is visible */
+    .container,
+    .content,
+    main,
+    article {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 10px !important;
+    }
+    /* Make links visible */
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+        color: #666;
+    }
+    /* Don't show link URLs for buttons or internal anchors */
+    a[href^="#"]:after,
+    a[href^="javascript"]:after,
+    .btn:after {
+        content: "";
+    }
+    /* Product display for print */
+    .product-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        border: 1px solid #ddd !important;
+        margin-bottom: 15px !important;
+    }
+    .product-card img {
+        max-width: 200px !important;
+        height: auto !important;
+    }
+    /* Order details print */
+    .order-details {
+        border: 1px solid #000 !important;
+        padding: 15px !important;
+    }
+    /* Tables for print */
+    table {
+        border-collapse: collapse !important;
+        width: 100% !important;
+    }
+    th,
+    td {
+        border: 1px solid #ddd !important;
+        padding: 8px !important;
+        text-align: right !important;
+    }
+    /* Page breaks */
+    h1,
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+    /* Show print date */
+    .print-date:after {
+        content: "تاريخ الطباعة: " attr(data-date);
+    }
+}
+
+/* ============================================
+   REDUCED MOTION (Accessibility)
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+@media (prefers-contrast: high) {
+    .btn-primary,
+    .btn-gradient {
+        border: 2px solid currentColor !important;
+    }
+    .card,
+    .product-card {
+        border: 2px solid #000 !important;
+    }
+}
+
+/* ============================================
+   SAFE AREA INSETS (iPhone X+)
+   ============================================ */
+
+@supports (padding: env(safe-area-inset-bottom)) {
+    .sticky-bottom,
+    .fixed-bottom,
+    .mobile-nav {
+        padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    }
+    .navbar-store {
+        padding-top: env(safe-area-inset-top);
+    }
+}
+
+/* ============================================
+   IN-APP BROWSER FIXES (Telegram, Instagram, etc)
+   ============================================ */
+
+.in-app-browser .scroll-reveal,
+.in-app-browser .product-card,
+.in-app-browser .category-card,
+.in-app-browser .feature-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+.in-app-browser img[loading="lazy"] {
+    opacity: 1 !important;
+}
+
+.in-app-browser * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+}
+
+/* ── iOS product-card double-tap fix ──────────────────────────────────────
+   iOS Safari consumes the FIRST tap of a card whose :hover reveals the
+   quick-add overlay (the navigation click only fires on the SECOND tap). On
+   touch devices, drop that hover-only overlay and neutralize the card's hover
+   transforms so the first tap navigates. Pointer/desktop devices unaffected.
+   Additive + !important inside a touch media query → cannot affect desktop. */
+
+@media (hover: none) and (pointer: coarse) {
+    .product-actions {
+        display: none !important;
+    }
+    .product-card:hover {
+        transform: none !important;
+    }
+    .product-card:hover .product-image img {
+        transform: none !important;
+    }
+}
